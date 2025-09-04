@@ -22,18 +22,22 @@ body {
     border-radius: 16px;
     background: transparent;
     box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+    width: 90vw;         /* scales with screen */
+    max-width: 400px;    /* limit size on big screens */
 }
 
 .calculator input {
-    width: 320px; 
+    width: 100%;         /* full width of calculator */
     border: none;
-    padding: 24px;
+    padding: 20px;
     margin: 10px 0;
     background: transparent;
     box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
-    font-size: 40px;
+    font-size: 2rem;     /* flexible font size */
     text-align: right;
-    color: #fff;  
+    color: #fff;
+    overflow-x: auto;    /* scroll if numbers get too long */
+    white-space: nowrap; /* keep numbers in one line */
 }
 
 input::placeholder {
@@ -43,23 +47,24 @@ input::placeholder {
 .calculator div {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* allows wrapping on small screens */
 }
 
 button {
     border: none;
-    width: 60px;
-    height: 60px;
-    margin: 10px;
+    flex: 1 1 20%;     /* buttons take up space evenly */
+    max-width: 80px;   /* keep them from being too big */
+    aspect-ratio: 1/1; /* keep square shape */
+    margin: 5px;
     border-radius: 50%;
     background: transparent;
     color: #fff;
-    font-size: 20px;
+    font-size: 1.2rem;
     box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
                 5px 5px 15px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
-
 
 button:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -72,18 +77,32 @@ button:active {
                 inset 5px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Highlight operators */
-/* button:nth-child(4),
-button:nth-child(8),
-button:nth-child(12),
-button:nth-child(16),
-button:nth-child(20) {
-    background: #fb7c14;
-    color: #fff; */
-/* } */
-.equalBtn{
+.equalBtn {
     background-color: #fb7c14;
+    color: #fff;
 }
-.operator{
+
+.operator {
     color: #6dee0a;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+    .calculator input {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+    button {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .calculator {
+        padding: 15px;
+    }
+    button {
+        font-size: 0.9rem;
+        margin: 4px;
+    }
 }
